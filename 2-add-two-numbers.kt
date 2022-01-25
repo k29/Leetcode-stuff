@@ -9,24 +9,35 @@
  */
 class Solution {
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
-        var temp1 = l1
-        var temp2 = l2
-        var carry = 0
+        // iterators for l1 and l2
+        var l1Itr = l1
+        var l2Itr = l2
+
+        // result list and its iterator
         var resListHead: ListNode? = null
         var resListItr: ListNode? = null
-        while(temp1 != null || temp2 != null || carry != 0) {
-            var num1:Int = 0
-            var num2:Int = 0
-            if(temp1 != null){
-                num1 = temp1.`val`
-            }
-            if (temp2 != null) {
-                num2 = temp2.`val`
-            }
+
+        // carry value
+        var carry = 0
+
+        // loop over till all are not null or carry is not 0
+        while(l1Itr != null || l2Itr != null || carry != 0) {
+
+            // extract values of each list item
+            var num1:Int = l1Itr?.`val` ?: 0
+            var num2:Int = l2Itr?.`val` ?: 0
+
+            // sum = sum of digits plus carry
             var sum = num1+num2 + carry
-            var sum_digit = sum%10 // keep the last digit here
+
+            // extract ones place
+            var sum_digit = sum%10
+
+            // find out the carry
             carry = sum/10
 
+            // if head is null, set it and set the iterator
+            // else, create new node and add to the list.
             if (resListHead == null) {
                 resListHead = ListNode(sum_digit)
                 resListItr = resListHead
@@ -36,9 +47,12 @@ class Solution {
                 resListItr = tempNode
             }
 
-            temp1 = temp1?.next
-            temp2 = temp2?.next
+            // Iterate
+            l1Itr = l1Itr?.next
+            l2Itr = l2Itr?.next
         }
+
+        // return head
         return resListHead
     }
 }
