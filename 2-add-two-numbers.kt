@@ -24,14 +24,14 @@ class Solution {
         while(l1Itr != null || l2Itr != null || carry != 0) {
 
             // extract values of each list item
-            var num1:Int = l1Itr?.`val` ?: 0
-            var num2:Int = l2Itr?.`val` ?: 0
+            val num1:Int = l1Itr?.`val` ?: 0
+            val num2:Int = l2Itr?.`val` ?: 0
 
             // sum = sum of digits plus carry
-            var sum = num1+num2 + carry
+            val sum = num1+num2 + carry
 
             // extract ones place
-            var sum_digit = sum%10
+            val sum_digit = sum%10
 
             // find out the carry
             carry = sum/10
@@ -42,7 +42,7 @@ class Solution {
                 resListHead = ListNode(sum_digit)
                 resListItr = resListHead
             } else {
-                var tempNode = ListNode(sum_digit)
+                val tempNode = ListNode(sum_digit)
                 resListItr?.next = tempNode
                 resListItr = tempNode
             }
